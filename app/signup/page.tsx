@@ -3,7 +3,7 @@
 import { LockClosedIcon } from "@heroicons/react/24/outline";
 import { UserIcon } from "@heroicons/react/24/outline";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import fetchClient from "../lib/fetchClient";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -40,9 +40,11 @@ export default function Signup() {
     }
   };
 
-  if (session) {
-    router.push("/");
-  }
+  useEffect(() => {
+    if (session) {
+      router.push("/");
+    }
+  }, [session]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-5 lg:p-10 bg-[#F0F4F3]">

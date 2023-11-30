@@ -5,7 +5,7 @@ import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Signin() {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,9 +33,11 @@ export default function Signin() {
     setIsError(true);
   };
 
-  if (session) {
-    router.push("/");
-  }
+  useEffect(() => {
+    if (session) {
+      router.push("/");
+    }
+  }, [session]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-5 lg:p-10 bg-[#F0F4F3]">

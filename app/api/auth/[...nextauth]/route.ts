@@ -2,7 +2,7 @@ import { Backend_URL } from "@/app/lib/constants";
 import NextAuth from "next-auth/next";
 import Credentials from "next-auth/providers/credentials";
 
-export const authOptions = {
+const authOptions = {
   providers: [
     Credentials({
       credentials: {
@@ -39,10 +39,10 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: any) {
       return { ...token, ...user };
     },
-    async session({ session, token, user }) {
+    async session({ session, token, user }: any) {
       session = token as any;
       return session;
     },
