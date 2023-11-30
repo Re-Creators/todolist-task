@@ -34,7 +34,7 @@ export default function Signin() {
   };
 
   useEffect(() => {
-    if (session) {
+    if (session?.data) {
       router.push("/");
     }
   }, [session]);

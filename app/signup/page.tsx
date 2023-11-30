@@ -41,7 +41,7 @@ export default function Signup() {
   };
 
   useEffect(() => {
-    if (session) {
+    if (session?.data) {
       router.push("/");
     }
   }, [session]);
