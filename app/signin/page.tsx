@@ -6,6 +6,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Head from "next/head";
 
 export default function Signin() {
   const [isLoading, setIsLoading] = useState(false);
@@ -41,6 +42,9 @@ export default function Signin() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-5 lg:p-10 bg-[#F0F4F3]">
+      <Head>
+        <title>Sign In</title>
+      </Head>
       <main className="flex flex-row-reverse p-5 lg:p-0 lg:h-[600px] w-full xl:w-[80%] 2xl:w-[60%] text-center border rounded-lg bg-white shadow-md overflow-hidden">
         <div className="hidden lg:flex items-center justify-center p-10 bg-primary w-2/5">
           <div className="space-y-8">

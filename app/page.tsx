@@ -1,28 +1,38 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import TaskList from "./components/TaskList";
 import { getSession } from "next-auth/react";
 import NiceModal from "@ebay/nice-modal-react";
 import TaskEditModal from "./components/modals/TaskEditlModal";
 import ShowTaskModal from "./components/modals/ShowTaskModal";
+import { Loading } from "./components/common/Loading";
+import Head from "next/head";
 
 NiceModal.register("task-edit-modal", TaskEditModal);
 NiceModal.register("show-task-modal", ShowTaskModal);
 
 export default function Home() {
-  useEffect(() => {
+  const [loading, setLoading] = useState(true);
+
+  useLayoutEffect(() => {
     getSession().then((session) => {
       if (!session) {
         window.location.href = "/signin";
       }
+      setLoading(false);
     });
   }, []);
+
+  if (loading) return <Loading />;
 
   return (
     <NiceModal.Provider>
       <main className="">
+        <Head>
+          <title>Todo App</title>
+        </Head>
         <Navbar />
         <div className="container mx-auto flex flex-col items-center justify-center flex-grow mt-10">
           <div>

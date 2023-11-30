@@ -46,6 +46,9 @@ const authOptions = {
       session = token as any;
       return session;
     },
+    pages: {
+      signIn: "/signin",
+    },
   },
 };
 
